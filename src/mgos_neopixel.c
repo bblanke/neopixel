@@ -82,9 +82,11 @@ void mgos_neopixel_clear(struct mgos_neopixel *np) {
 
 void mgos_neopixel_show(struct mgos_neopixel *np) {
   mgos_gpio_write(np->pin, 0);
+  //LOG(LL_INFO, "SHOWING");
   mgos_usleep(100);
 #if MGOS_ENABLE_BITBANG
-  mgos_bitbang_write_bits(np->pin, MGOS_DELAY_100NSEC, 4, 10, 10, 7, np->data, np->num_pixels * NUM_CHANNELS);
+  //LOG(LL_INFO, "BITBANG");
+  mgos_bitbang_write_bits(np->pin, MGOS_DELAY_100NSEC, 12, 5, 13, 20, np->data, np->num_pixels * NUM_CHANNELS);
 #endif
   mgos_gpio_write(np->pin, 0);
   mgos_usleep(100);
